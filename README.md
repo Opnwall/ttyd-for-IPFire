@@ -2,20 +2,18 @@
 
 This project adds a ttyd browser terminal entry to the IPFire WebUI.
 
-It installs:
-
-- `/srv/web/ipfire/cgi-bin/ttyd.cgi`
-- `/var/ipfire/menu.d/EX-ttyd.menu`
-- `/etc/rc.d/init.d/ttyd`
-- `/etc/sysconfig/ttyd`
-- `/opt/ttyd/bin/ttyd`
-
 The installer also updates the IPFire WebUI Content Security Policy to allow
 the embedded ttyd iframe on port `7681`, and restores the original CSP on
 uninstall.
 
 The terminal runs SSH as `root` to `127.0.0.1:22`.
 Authentication and shell permissions remain controlled by IPFire SSH.
+
+Tested and verified in the following environments:
+
+- IPFire 2.29 (x86_64) - 203 Development 
+
+![](image/ttyd.png)
 
 ## Certificate model
 
@@ -33,28 +31,10 @@ Then it falls back to:
 
 It does not generate its own certificate.
 
-## ttyd runtime
-
-The bundled ttyd runtime is stored directly in the install tree:
-
-```text
-src/opt/ttyd/bin/ttyd
-```
-
-The service also accepts ttyd from these fallback locations:
-
-```text
-/opt/ttyd/bin/ttyd
-/usr/bin/ttyd
-/usr/local/bin/ttyd
-```
-
 ## Install
 
 ```sh
-cd "ttyd for IPFire"
-chmod +x install.sh uninstall.sh src/etc/rc.d/init.d/ttyd src/srv/web/ipfire/cgi-bin/ttyd.cgi src/opt/ttyd/bin/ttyd
-./install.sh
+sh install.sh
 ```
 
 Run the installer as `root` from the project directory after copying it to IPFire.
@@ -62,6 +42,7 @@ Run the installer as `root` from the project directory after copying it to IPFir
 To remove:
 
 ```sh
-cd "ttyd for IPFire"
-./uninstall.sh
+sh uninstall.sh
 ```
+## Disclaimer
+This is an unofficial plugin and is not supported by the IPFire team; use at your own risk.
