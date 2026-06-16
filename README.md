@@ -23,4 +23,4 @@ sh install.sh
 sh uninstall.sh
 ```
 ## Disclaimer
-This is an unofficial plugin and is not supported by the IPFire team; use at your own risk.
+This is an unofficial plugin and is not supported by the IPFire team. use at your own risk.
