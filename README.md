@@ -3,7 +3,7 @@
 [![IPFire](https://img.shields.io/badge/IPFire-2.29%20Core%20203-red)](https://www.ipfire.org/)
 [![ttyd](https://img.shields.io/badge/ttyd-Web%20Terminal-blue)](https://github.com/tsl0922/ttyd)
 
-This project adds a ttyd browser terminal entry to the IPFire WebUI.
+This project adds ttyd terminal access via the GUI to IPFire.
 
 Tested and verified in the following environments:
 
