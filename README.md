@@ -17,9 +17,7 @@ Tested and verified in the following environments:
 sh install.sh
 ```
 
-Run the installer as `root` from the project directory after copying it to IPFire.
-
-To remove:
+## Uninstall
 
 ```sh
 sh uninstall.sh
