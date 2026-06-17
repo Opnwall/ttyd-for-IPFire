@@ -29,5 +29,6 @@ Run the installer as root from the project directory after copying it to your IP
 ```sh
 sh uninstall.sh
 ```
+
 ## Disclaimer
-This is an unofficial community project and is not affiliated with or supported by the IPFire team. Please review the code and use it at your own discretion.
+This is an unofficial community project and is not affiliated with, endorsed by, or supported by the IPFire team. Please review the source code carefully before deployment and use it at your own risk.
