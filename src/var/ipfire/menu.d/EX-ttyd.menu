@@ -1,4 +1,4 @@
-$subipfire->{'ttyd'} = {
+$subservices->{'75.ttyd'} = {
 	'caption' => 'ttyd',
 	'uri' => '/cgi-bin/ttyd.cgi',
 	'title' => 'ttyd',

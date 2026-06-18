@@ -9,7 +9,10 @@ This unofficial plugin integrates the excellent ttyd web terminal into the IPFir
 
 ## Features
 
-* Adds a ttyd entry to the IPFire WebUI
+* Adds a ttyd entry under Services in the IPFire WebUI
+* Adds Start, Stop, and Restart controls in the ttyd WebUI page
+* Registers ttyd as an add-on service so it appears on the IPFire Services page
+* Installs disabled-at-boot and stopped by default, so the terminal can be enabled only when needed
 * Browser-based terminal access
 * Simple installation and removal scripts
 
@@ -24,11 +27,12 @@ sh install.sh
 ```
 Run the installer as root from the project directory after copying it to your IPFire system.
 
+The installer does not start ttyd automatically and leaves boot autostart disabled. Start it from `Services > ttyd`, or use `Status > Services` to start it and optionally enable boot autostart.
+
 ## Uninstallation
 
 ```sh
 sh uninstall.sh
 ```
-
 ## Disclaimer
 This is an unofficial community project not supported by the IPFire team; use it at your own risk.
