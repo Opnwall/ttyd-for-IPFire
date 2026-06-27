@@ -76,15 +76,22 @@ if [ ! -d src ]; then
 	echo "Missing src directory. Run this installer from the ttyd for IPFire project directory."
 	exit 1
 fi
+[ -f src/etc/sudoers.d/ttyd ] || {
+	echo "Missing file: src/etc/sudoers.d/ttyd"
+	exit 1
+}
 
 log "$YELLOW" "Copying project files..."
-cp -R -f src/. /
+for dir in etc opt srv var; do
+	cp -R -f "src/$dir/." "/$dir/"
+done
 
 log "$YELLOW" "Setting permissions..."
-chown root:root /etc/rc.d/init.d/ttyd /etc/sysconfig/ttyd /srv/web/ipfire/cgi-bin/ttyd.cgi 2>/dev/null || true
+chown root:root /etc/rc.d/init.d/ttyd /etc/sudoers.d/ttyd /etc/sysconfig/ttyd /srv/web/ipfire/cgi-bin/ttyd.cgi 2>/dev/null || true
 chown -R root:root /opt/ttyd 2>/dev/null || true
 chmod 0755 /etc/rc.d/init.d/ttyd 2>/dev/null || true
 chmod 0755 /srv/web/ipfire/cgi-bin/ttyd.cgi 2>/dev/null || true
+chmod 0440 /etc/sudoers.d/ttyd 2>/dev/null || true
 chmod 0644 /etc/sysconfig/ttyd 2>/dev/null || true
 chmod 0644 /var/ipfire/menu.d/EX-ttyd.menu 2>/dev/null || true
 chown nobody:nobody /var/ipfire/menu.d/EX-ttyd.menu 2>/dev/null || true
@@ -101,11 +108,6 @@ write_pakfire_package_list_entry
 
 log "$YELLOW" "Configuring WebUI service control permissions..."
 install -d -m 755 /etc/sudoers.d
-cat > /etc/sudoers.d/ttyd <<'EOF'
-Cmnd_Alias TTYD_SERVICE = /etc/rc.d/init.d/ttyd start, /etc/rc.d/init.d/ttyd stop, /etc/rc.d/init.d/ttyd restart, /etc/rc.d/init.d/ttyd status
-nobody ALL=(root) NOPASSWD: TTYD_SERVICE
-EOF
-chmod 440 /etc/sudoers.d/ttyd
 visudo -cf /etc/sudoers.d/ttyd >/dev/null || {
 	rm -f /etc/sudoers.d/ttyd
 	log "$RED" "sudoers validation failed."
